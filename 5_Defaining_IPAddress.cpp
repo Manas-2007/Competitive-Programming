@@ -12,11 +12,11 @@ int main()
     {
         if(s[i]=='.')
         {
-            address=address+"[.]";
+            address=address+"[.]";          
         }
         else
         {
-            address=address+s[i];
+            address=address+s[i];           //Implicit Type Conversion from char to string......
         }
     }
     cout<<address<<endl;
