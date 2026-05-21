@@ -1,48 +1,43 @@
 #include<iostream>
 using namespace std;
-int Fibo(int N)
+void selection_sort(int *array,int size)
 {
-    int a=0,b=1,result=0;
-    if(N==1)
+    for(int i=0;i<size;i++)
     {
-        return 0;
-    }
-    else if(N==2)
-    {
-        return 1;
-    }
-    else{
-        for(int i=3;i<=N;i++)
+        int minIdx=i;
+        for(int j=i+1;j<size;j++)
         {
-            result=a+b;
-            a=b;
-            b=result;
+            if(array[j]<array[minIdx])
+            {
+                minIdx=j;
+            }
         }
-        return result;
+        swap(array[minIdx],array[i]);
+
     }
 }
 
-//Rotation of array
-void rotation(int *array,int size)
+void Descending(int *array,int size)
 {
-    cout<<"The size of function array based pointer is "<<sizeof(array)<<endl;
-    int lastidx=array[size-1];
-    for(int i=size-1;i>=1;i--)
+    for(int i=0;i<size;i++)
     {
-        array[i]=array[i-1];
+        int max=i;
+        for(int j=i+1;j<size;j++)
+        {
+            if(array[j]>array[max])
+            {
+                max=j;
+            }
+        }
+        swap(array[max],array[i]);
     }
-    array[0]=lastidx;
 }
-
 int main()
 {
-    
-    int array[5]={10,20,30,40,50};
-    rotation(array,5);
+    int array[5]={2,32,45,1,3};
+    Descending(array,5);
     for(int i=0;i<5;i++)
     {
         cout<<array[i]<<" ";
     }
-
-    return 0;
 }
