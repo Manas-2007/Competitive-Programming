@@ -1,43 +1,49 @@
 #include<iostream>
 using namespace std;
-void selection_sort(int *array,int size)
+
+//Bubble Sort Algorithm
+void BubbleSort(int *array,int size)
 {
-    for(int i=0;i<size;i++)
+    int countswap=0;
+    for(int i=0;i<size-1;i++)
     {
-        int minIdx=i;
-        for(int j=i+1;j<size;j++)
+        bool isSwap=false;
+        for(int j=0;j<size-i-1;j++)
         {
-            if(array[j]<array[minIdx])
+            if(array[j]>array[j+1])
             {
-                minIdx=j;
+                countswap++;
+                isSwap=true;
+                swap(array[j],array[j+1]);
             }
         }
-        swap(array[minIdx],array[i]);
-
-    }
-}
-
-void Descending(int *array,int size)
-{
-    for(int i=0;i<size;i++)
-    {
-        int max=i;
-        for(int j=i+1;j<size;j++)
+        if(!isSwap)
         {
-            if(array[j]>array[max])
-            {
-                max=j;
-            }
+            break;
         }
-        swap(array[max],array[i]);
     }
+
+    cout<<"\nTOTAL SWAPS : "<<countswap<<"\n";
 }
 int main()
 {
-    int array[5]={2,32,45,1,3};
-    Descending(array,5);
-    for(int i=0;i<5;i++)
+    int size;
+    cout<<"Enter the size of the array : ";
+    cin>>size;
+    int *array=new int[size];
+    cout<<"Start entry : ";
+    for(int i=0;i<size;i++)
+    {
+        cin>>array[i];
+    }
+    
+    BubbleSort(array,size);
+
+    cout<<"Your Sorted Elements : ";
+    for(int i=0;i<size;i++)
     {
         cout<<array[i]<<" ";
     }
+
+    return 0;
 }
