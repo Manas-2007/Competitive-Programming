@@ -1,4 +1,5 @@
 #include<iostream>
+#include<vector>
 using namespace std;
 
 //Ascending Merge Sort
@@ -19,7 +20,7 @@ void Ascend_mergeSort(int *array,int start,int end)
         int n2=end-mid;
 
         //Temporary Left & Right arrays
-        int L[n1],R[n2];
+        vector<int> L(n1),R(n2);
 
         //Copy data into Left & Right array
         for(int i=0;i<n1;i++)
@@ -85,7 +86,7 @@ void Descend_mergeSort(int *array,int start,int end)
         int n2=end-mid;
 
         //Temporary arrays
-        int L[n1],R[n2];
+        vector<int> L(n1),R(n2);
 
         //Entering data in arrays
         for(int i=0;i<n1;i++)

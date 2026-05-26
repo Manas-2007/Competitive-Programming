@@ -1,62 +1,58 @@
 #include<iostream>
 using namespace std;
-void mergesort(int *array,int start,int end)
-{
-    if(start<end)
+class Node{
+    public:
+    int data;
+    Node*next;
+    Node(int data)
     {
-        int mid=start+(end-start)/2;
-        mergesort(array,start,mid);
-        mergesort(array,mid+1,end);
+        this->data=data;
+        next=NULL;
+    }
+};
 
-        int n1=mid-start+1;
-        int n2=end-mid;
-
-        int L[n1],R[n2];
-        for(int i=0;i<n1;i++)
+//Dynamic Creation of List
+void CreateList(Node*&head,int size)
+{
+    Node*ptr=head;
+    for(int i=1;i<=size;i++)
+    {
+        int data;
+        cout<<"Enter the data of Node "<<i<<" : ";
+        cin>>data;
+        Node*newnode=new Node(data);
+        if(head==NULL)
         {
-            L[i]=array[start+i];
+            head=newnode;
+            ptr=head;
         }
-        for(int j=0;j<n2;j++)
+        else
         {
-            R[j]=array[mid+1+j];
+            ptr->next=newnode;
+            ptr=ptr->next;
         }
-
-        int i=0,j=0,k=start;
-        while(i<n1 && j<n2)
-        {
-            if(L[i]<=R[j])
-            {
-                array[k]=L[i];
-                i++;
-            }
-            else
-            {
-                array[k]=R[j];
-                j++;
-            }
-            k++;
-        }
-
-        while(i<n1)
-        {
-            array[k]=L[i];
-            i++;
-            k++;
-        }
-        while(j<n2)
-        {
-            array[k]=R[j];
-            j++;
-            k++;
-        }        
     }
 }
+
+//Traversal of Ll
+void Traverse(Node *&head)
+{
+    Node*ptr=head;
+    while(ptr!=NULL)
+    {
+        cout<<ptr->data<<" ";
+        ptr=ptr->next;
+    }
+}
+
 int main()
 {
-    int marks[5]={56,43,7,3,57};
-    mergesort(marks,0,4);
-    for(int i=0;i<5;i++)
-    {
-        cout<<marks[i]<<" ";
-    }
+    int size;
+    Node*head=NULL;
+    cout<<"Enter the size of the Nodes : ";
+    cin>>size;
+    CreateList(head,size);
+    Traverse(head);
+
+    return 0;
 }
